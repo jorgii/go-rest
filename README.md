@@ -8,6 +8,7 @@ This is an example implementation of a REST API in Go. It uses the following lib
 * [Migrate](https://github.com/golang-migrate/migrate) for database migrations.
 * [Validator](https://github.com/go-playground/validator) for validation.
 * [Cobra](https://github.com/spf13/cobra) for the cli.
+* [Env](https://github.com/caarlos0/env) for configuration.
 
 # Useful commands
 * Start the database - `docker-compose up -d`

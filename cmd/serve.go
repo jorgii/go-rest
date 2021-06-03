@@ -1,10 +1,14 @@
 package cmd
 
 import (
+	"gorest/config"
 	"gorest/database"
+	"gorest/handler"
 	"gorest/router"
 	"log"
 
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/spf13/cobra"
 )
 
@@ -19,16 +23,20 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		db, err := database.ConnectDB()
+		cfg := config.New()
+		db, err := database.ConnectDB(cfg.DBHost, cfg.DBPort, cfg.DBUser, cfg.DBPassword, cfg.DBName)
 		if err != nil {
 			panic("Failed to connect to the database.")
 		}
 		sqlDB, _ := db.DB()
 		defer sqlDB.Close()
 
-		app := router.NewApp(db)
+		app := fiber.New()
+		app.Use(logger.New())
+		h := handler.New(db, cfg)
+		router.SetupRoutes(app, h)
 
-		log.Fatal(app.Listen("127.0.0.1:8080"))
+		log.Fatal(app.Listen(cfg.ListenAddr))
 	},
 }
 

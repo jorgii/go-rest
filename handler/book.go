@@ -8,13 +8,11 @@ import (
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
-	"gorm.io/gorm"
 )
 
 // GET /books
 // Get all books
-func ListBooksRequest(ctx *fiber.Ctx) error {
-	user := ctx.Locals("user").(*model.User)
+func (h *Handler) ListBooksRequest(ctx *fiber.Ctx) error {
 	var pagination = restapi.NewPagination()
 	if err := ctx.QueryParser(pagination); err != nil {
 		return restapi.ValidationErrorRespone(ctx, err)
@@ -23,8 +21,7 @@ func ListBooksRequest(ctx *fiber.Ctx) error {
 	if err := ctx.QueryParser(&filter); err != nil {
 		return restapi.ValidationErrorRespone(ctx, err)
 	}
-	db := ctx.Locals("db").(*gorm.DB)
-	books, count, err := service.ListBooks(db, user, pagination, &filter)
+	books, count, err := service.ListBooks(h.DB, h.User, pagination, &filter)
 	if err != nil {
 		return restapi.InternalServerErrorResponse(ctx)
 	}
@@ -33,11 +30,10 @@ func ListBooksRequest(ctx *fiber.Ctx) error {
 
 // POST /books
 // Create new book
-func CreateBookRequest(ctx *fiber.Ctx) error {
-	user := ctx.Locals("user").(*model.User)
+func (h *Handler) CreateBookRequest(ctx *fiber.Ctx) error {
 	// Validate input
 	var book = &model.Book{
-		UserID: user.ID,
+		UserID: h.User.ID,
 	}
 	if err := ctx.BodyParser(book); err != nil {
 		return restapi.ValidationErrorRespone(ctx, err)
@@ -47,8 +43,7 @@ func CreateBookRequest(ctx *fiber.Ctx) error {
 	}
 
 	// Create book
-	db := ctx.Locals("db").(*gorm.DB)
-	if err := service.CreateBook(db, book); err != nil {
+	if err := service.CreateBook(h.DB, book); err != nil {
 		return restapi.InternalServerErrorResponse(ctx)
 	}
 
@@ -57,15 +52,13 @@ func CreateBookRequest(ctx *fiber.Ctx) error {
 
 // GET /books/:id
 // Find a book
-func RetrieveBookRequest(ctx *fiber.Ctx) error {
-	user := ctx.Locals("user").(*model.User)
+func (h *Handler) RetrieveBookRequest(ctx *fiber.Ctx) error {
 	id, err := ctx.ParamsInt("id")
 	if err != nil {
 		return restapi.ValidationErrorRespone(ctx, err)
 	}
 	// Get model if exist
-	db := ctx.Locals("db").(*gorm.DB)
-	book, _ := service.RetrieveBook(db, id, user)
+	book, _ := service.RetrieveBook(h.DB, id, h.User)
 	if book == nil {
 		return restapi.NotFoundRespone(ctx)
 	}
@@ -74,15 +67,13 @@ func RetrieveBookRequest(ctx *fiber.Ctx) error {
 
 // PATCH /books/:id
 // Update a book
-func UpdateBookRequest(ctx *fiber.Ctx) error {
-	user := ctx.Locals("user").(*model.User)
+func (h *Handler) UpdateBookRequest(ctx *fiber.Ctx) error {
 	id, err := strconv.Atoi(ctx.Query("id"))
 	if err != nil {
 		return restapi.ValidationErrorRespone(ctx, err)
 	}
 	// Get model if exist
-	db := ctx.Locals("db").(*gorm.DB)
-	book, _ := service.RetrieveBook(db, id, user)
+	book, _ := service.RetrieveBook(h.DB, id, h.User)
 	if book == nil {
 		return restapi.NotFoundRespone(ctx)
 	}
@@ -98,7 +89,7 @@ func UpdateBookRequest(ctx *fiber.Ctx) error {
 	}
 
 	// Update
-	if err := service.UpdateBook(db, book); err != nil {
+	if err := service.UpdateBook(h.DB, book); err != nil {
 		return restapi.InternalServerErrorResponse(ctx)
 	}
 
@@ -107,19 +98,17 @@ func UpdateBookRequest(ctx *fiber.Ctx) error {
 
 // DELETE /books/:id
 // Delete a book
-func DeleteBookRequest(ctx *fiber.Ctx) error {
-	user := ctx.Locals("user").(*model.User)
+func (h *Handler) DeleteBookRequest(ctx *fiber.Ctx) error {
 	id, err := strconv.Atoi(ctx.Query("id"))
 	if err != nil {
 		return restapi.ValidationErrorRespone(ctx, err)
 	}
 	// Get model if exist
-	db := ctx.Locals("db").(*gorm.DB)
-	book, _ := service.RetrieveBook(db, id, user)
+	book, _ := service.RetrieveBook(h.DB, id, h.User)
 	if book == nil {
 		return restapi.NotFoundRespone(ctx)
 	}
-	if err := service.DeleteBook(db, book); err != nil {
+	if err := service.DeleteBook(h.DB, book); err != nil {
 		return restapi.InternalServerErrorResponse(ctx)
 	}
 
