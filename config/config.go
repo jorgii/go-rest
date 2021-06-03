@@ -13,7 +13,7 @@ type Config struct {
 	DBUser       string `env:"DATABASE_USER" envDefault:"postgres"`
 	DBName       string `env:"DATABASE_NAME" envDefault:"postgres"`
 	DBPassword   string `env:"DATABASE_PASSWORD" envDefault:"postgres"`
-	JWTPublicKey string `env:"JWT_PUBLIC_KEY" envDefault:"-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoIVw9/WlphgWveot3GKI8lmJWSGcB7e3PRM41792Uh2ENfZMCmEhyIdakNGqe2wuM4/nJmqaCjZvvrA+0AqawrpGY1K9ptLVfQZTfnveFC4V+jnDHpaF/XDIG1pyZfGJt/GSEBW5Y9DJ/l/Cndgv3Flr2tqeaGsae1KyqERZfqcRhk0Aw+G4WUdfxZKjoAjRe2fIePHWvoDudbWOxXa/jXkX7LipZY71Y6r2E27c+sdQsOws5UT0jnGVOqUAyIrzh42koZk1a5yhhL3Bquaoe86YriW16VJUfEDRqlrkEXrfS+m738wxV3Xh/nsRox4C8NarvtNuYALmiwjAFNS3dwIDAQAB\n-----END PUBLIC KEY-----"`
+	JWTPublicKey string `env:"JWT_PUBLIC_KEY" envDefault:"-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMPspipOA0/sYR8udpBFT+U8IT3ynuNMJGuXGaqiawcQqVKFUPMxGrhbS/kp2WCbXNx7ykBB4VFoyAjKS1/rZ2Eaipcm1vIFa3arDztutrRVjO2yxuDfupWwrZDqYEBf4gqKVwFCO0zjywR6x7/Tf56jcu5B7PVew7botJgUbZiwIDAQAB\n-----END PUBLIC KEY-----"`
 }
 
 func New() *Config {
