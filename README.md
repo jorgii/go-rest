@@ -10,6 +10,9 @@ This is an example implementation of a REST API in Go. It uses the following lib
 * [Cobra](https://github.com/spf13/cobra) for the cli.
 * [Env](https://github.com/caarlos0/env) for configuration.
 * [JWT-Go](https://github.com/dgrijalva/jwt-go) for JWT authentication.
+* [go-sqlmock](https://github.com/DATA-DOG/go-sqlmock) for mocking the db driver during unit tests.
+* [Testify](https://github.com/stretchr/testify) for assertions in unit tests.
+* [Postman collections](postman_collections.json)
 
 # Useful commands
 * Start the database: `docker-compose up -d`
@@ -20,7 +23,7 @@ This is an example implementation of a REST API in Go. It uses the following lib
 
 # Using the API
 
-## Create a user:
+## Create a user
 ```bash
 curl --location --request POST 'http://localhost:8080/users' \
 --header 'Content-Type: application/json' \
@@ -32,10 +35,10 @@ curl --location --request POST 'http://localhost:8080/users' \
 ```
 ## JWT
 
-### Use this pregenerated JWT (expires in year 2100):
+### Use this pregenerated JWT (expires in year 2100)
 `eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkttQzh1TjBNVzFwYWF3T0I3emZ6WllqS0djc19VckpHSHRVc3ljNmRRSlEifQ.eyJleHAiOjQxMTU3MDQzMzAsImlhdCI6MTYyMjcyODM2MCwianRpIjoiN2RlMGY2ZTgtMzk1OC00Njc5LWJkN2ItNGFiMTAyZGNkNmViIiwiaXNzIjoiaHR0cDovL3Nzby50ZXN0LmNvbS9hdXRoL3JlYWxtcy90ZXN0IiwiYXVkIjpbImNvbm5lY3RfYXBpIiwiYWNjb3VudCJdLCJzdWIiOiI5NDg1MWYyYi03ZDBiLTRmMzctYmY0MC1kNTA0ZTU3YzIzMjEiLCJ0eXAiOiJCZWFyZXIiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZW1haWwiOiJqb2huLmRvZUB0ZXN0LmNvbSJ9.D9KCU6t6ZY5NjfMBD2EZ1y9aSQcSJy6Bb7ABSmWvUN-4Ud2QZIcdDRRHRpPIIdba-mYFCpNPr5OVLCsB6cqzWpyAfHdxIfW9aqL9sUs-iL0Vj-ddtmmKGeyrw2z5_Jb0lcm2b9LuzbO4nnDdX1fFbh6VfNPaJDu80wR9Goh0IwE`
 
-### Alternatively generate a JWT:
+### Alternatively generate a JWT
  * Open [jwt.io](https://jwt.io/)
  * Choose algorithm RS256
  * Enter payload (the expiration is year 2100):
@@ -56,7 +59,7 @@ curl --location --request POST 'http://localhost:8080/users' \
   "email": "john.doe@test.com"
 }
 ```
- * Enter public key (this key is the default in `config/config.go`):
+ * Enter public key (this key is the default in [config/config.go](config/config.go)):
 ```
 -----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMPspipOA0/sYR8udpBFT+U8IT

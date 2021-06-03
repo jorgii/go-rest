@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "e84d7fba-dd4c-4bc8-81cc-ccee970c4774",
+		"name": "Go REST API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkttQzh1TjBNVzFwYWF3T0I3emZ6WllqS0djc19VckpHSHRVc3ljNmRRSlEifQ.eyJleHAiOjQxMTU3MDQzMzAsImlhdCI6MTYyMjcyODM2MCwianRpIjoiN2RlMGY2ZTgtMzk1OC00Njc5LWJkN2ItNGFiMTAyZGNkNmViIiwiaXNzIjoiaHR0cDovL3Nzby50ZXN0LmNvbS9hdXRoL3JlYWxtcy90ZXN0IiwiYXVkIjpbImNvbm5lY3RfYXBpIiwiYWNjb3VudCJdLCJzdWIiOiI5NDg1MWYyYi03ZDBiLTRmMzctYmY0MC1kNTA0ZTU3YzIzMjEiLCJ0eXAiOiJCZWFyZXIiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZW1haWwiOiJqb2huLmRvZUB0ZXN0LmNvbSJ9.D9KCU6t6ZY5NjfMBD2EZ1y9aSQcSJy6Bb7ABSmWvUN-4Ud2QZIcdDRRHRpPIIdba-mYFCpNPr5OVLCsB6cqzWpyAfHdxIfW9aqL9sUs-iL0Vj-ddtmmKGeyrw2z5_Jb0lcm2b9LuzbO4nnDdX1fFbh6VfNPaJDu80wR9Goh0IwE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"{{$randomJobTitle}}\",\n    \"author\": \"{{$randomFullName}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List books",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkttQzh1TjBNVzFwYWF3T0I3emZ6WllqS0djc19VckpHSHRVc3ljNmRRSlEifQ.eyJleHAiOjQxMTU3MDQzMzAsImlhdCI6MTYyMjcyODM2MCwianRpIjoiN2RlMGY2ZTgtMzk1OC00Njc5LWJkN2ItNGFiMTAyZGNkNmViIiwiaXNzIjoiaHR0cDovL3Nzby50ZXN0LmNvbS9hdXRoL3JlYWxtcy90ZXN0IiwiYXVkIjpbImNvbm5lY3RfYXBpIiwiYWNjb3VudCJdLCJzdWIiOiI5NDg1MWYyYi03ZDBiLTRmMzctYmY0MC1kNTA0ZTU3YzIzMjEiLCJ0eXAiOiJCZWFyZXIiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZW1haWwiOiJqb2huLmRvZUB0ZXN0LmNvbSJ9.D9KCU6t6ZY5NjfMBD2EZ1y9aSQcSJy6Bb7ABSmWvUN-4Ud2QZIcdDRRHRpPIIdba-mYFCpNPr5OVLCsB6cqzWpyAfHdxIfW9aqL9sUs-iL0Vj-ddtmmKGeyrw2z5_Jb0lcm2b9LuzbO4nnDdX1fFbh6VfNPaJDu80wR9Goh0IwE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "page_size",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "created_at_lte",
+							"value": "2021-05-31T17:02:02.723539%2B03:00",
+							"disabled": true
+						},
+						{
+							"key": "created_at_gte",
+							"value": "2021-05-31T17:02:01.453407+03:00",
+							"disabled": true
+						},
+						{
+							"key": "title",
+							"value": "Global",
+							"disabled": true
+						},
+						{
+							"key": "author",
+							"value": "Camille Predovic",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkttQzh1TjBNVzFwYWF3T0I3emZ6WllqS0djc19VckpHSHRVc3ljNmRRSlEifQ.eyJleHAiOjQxMTU3MDQzMzAsImlhdCI6MTYyMjcyODM2MCwianRpIjoiN2RlMGY2ZTgtMzk1OC00Njc5LWJkN2ItNGFiMTAyZGNkNmViIiwiaXNzIjoiaHR0cDovL3Nzby50ZXN0LmNvbS9hdXRoL3JlYWxtcy90ZXN0IiwiYXVkIjpbImNvbm5lY3RfYXBpIiwiYWNjb3VudCJdLCJzdWIiOiI5NDg1MWYyYi03ZDBiLTRmMzctYmY0MC1kNTA0ZTU3YzIzMjEiLCJ0eXAiOiJCZWFyZXIiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZW1haWwiOiJqb2huLmRvZUB0ZXN0LmNvbSJ9.D9KCU6t6ZY5NjfMBD2EZ1y9aSQcSJy6Bb7ABSmWvUN-4Ud2QZIcdDRRHRpPIIdba-mYFCpNPr5OVLCsB6cqzWpyAfHdxIfW9aqL9sUs-iL0Vj-ddtmmKGeyrw2z5_Jb0lcm2b9LuzbO4nnDdX1fFbh6VfNPaJDu80wR9Goh0IwE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update book",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "Thomas_Berge@yahoo.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "test1234",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"{{$randomJobTitle}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/books/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete book",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books/37",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"37"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"George\",\n    \"last_name\": \"Goranov\",\n    \"email\": \"g.p.goranov@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
