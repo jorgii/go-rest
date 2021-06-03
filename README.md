@@ -12,7 +12,7 @@ This is an example implementation of a REST API in Go. It uses the following lib
 * [JWT-Go](https://github.com/dgrijalva/jwt-go) for JWT authentication.
 * [go-sqlmock](https://github.com/DATA-DOG/go-sqlmock) for mocking the db driver during unit tests.
 * [Testify](https://github.com/stretchr/testify) for assertions in unit tests.
-* [Postman collections](postman_collections.json)
+* [Postman collection](postman_collection.json)
 
 # Useful commands
 * Start the database: `docker-compose up -d`
