@@ -1,7 +1,7 @@
 package router
 
 import (
-	"gorest/controller"
+	"gorest/handler"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
@@ -14,15 +14,15 @@ func SetupRoutes(app *fiber.App) {
 	})
 
 	users := app.Group("/users")
-	users.Post("", controller.CreateUserRequest)
-	users.Get("", controller.ListUsersRequest)
+	users.Post("", handler.CreateUserRequest)
+	users.Get("", handler.ListUsersRequest)
 
-	books := app.Group("/books", controller.JWTAuthenticateUser)
-	books.Get("", controller.ListBooksRequest)
-	books.Post("", controller.CreateBookRequest)
-	books.Get("/:id", controller.RetrieveBookRequest)
-	books.Patch("/:id", controller.UpdateBookRequest)
-	books.Delete("/:id", controller.DeleteBookRequest)
+	books := app.Group("/books", handler.JWTAuthenticateUser)
+	books.Get("", handler.ListBooksRequest)
+	books.Post("", handler.CreateBookRequest)
+	books.Get("/:id", handler.RetrieveBookRequest)
+	books.Patch("/:id", handler.UpdateBookRequest)
+	books.Delete("/:id", handler.DeleteBookRequest)
 }
 
 func NewApp(db *gorm.DB) *fiber.App {
