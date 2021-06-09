@@ -58,8 +58,8 @@ func (h *Handler) RetrieveBookRequest(ctx *fiber.Ctx) error {
 		return restapi.ValidationErrorRespone(ctx, err)
 	}
 	// Get model if exist
-	book, _ := service.RetrieveBook(h.DB, id, h.User)
-	if book == nil {
+	book, err := service.RetrieveBook(h.DB, id, h.User)
+	if err != nil {
 		return restapi.NotFoundRespone(ctx)
 	}
 	return restapi.DetailResponse(ctx, book)

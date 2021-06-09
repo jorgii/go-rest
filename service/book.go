@@ -30,7 +30,7 @@ func RetrieveBook(db *gorm.DB, id int, user *model.User) (*model.Book, error) {
 		ID:     id,
 		UserID: user.ID,
 	}
-	return book, db.Scopes(whereUserIs(user)).Find(book).Error
+	return book, db.Scopes(whereUserIs(user)).Take(book).Error
 }
 
 func UpdateBook(db *gorm.DB, book *model.Book) error {
