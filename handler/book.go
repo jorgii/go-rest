@@ -1,11 +1,13 @@
 package handler
 
 import (
+	"fmt"
 	"gorest/filter"
 	"gorest/model"
 	"gorest/restapi"
 	"gorest/service"
 	"strconv"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -62,6 +64,8 @@ func (h *Handler) RetrieveBookRequest(ctx *fiber.Ctx) error {
 	if err != nil {
 		return restapi.NotFoundRespone(ctx)
 	}
+	fmt.Println(book.CreatedAt.Format(time.RFC3339))
+	fmt.Println(book.CreatedAt.Location())
 	return restapi.DetailResponse(ctx, book)
 }
 
